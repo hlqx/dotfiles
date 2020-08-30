@@ -1,0 +1,13 @@
+# cry configuration
+# not quite frozen yet but soon(tm)
+
+polybar.barName=bar1
+xorg.wallpaper.location=/home/hlqx/.wallpapers/duotone_furfag.png
+xorg.input.touchpad.enabled=0
+services.compositor.enabled=0
+services.compositor.command=picom
+rofi.highlightcolor=A3B8EF
+cry.version=12.2
+cry.firstRun=0
+
+#vim: ft=cfg

@@ -1,0 +1,210 @@
+# i3-c14-b1
+# Legacy Config Cruft Included :)
+
+# Polkit
+	exec --no-startup-id /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
+
+# Remove Window Borders, and set gaps. For the a e s t h e t i c.
+	gaps inner 5
+	gaps outer 3
+
+
+# Start some fancy services. (Bloat.)
+	#exec --no-startup-id compton --blur-method kawase # Compton
+	exec --no-startup-id dunst
+	exec --no-startup-id xrdb ~/.Xresources # Set some Xorg preferences 
+	exec --no-startup-id xbanish # Hides the mouse cursor when typing
+	exec --no-startup-id ~/.cry/scripts/init.sh	
+	exec --no-startup-id ~/.cry/scripts/autowall.sh
+#	exec --no-startup-id polybar bar1
+
+
+# Set the Modifier key. Default: Windows Key.
+	set $mod Mod4
+
+# Toggle polybar
+	bindsym $mod+shift+p exec ~/.cry/scripts/bar.sh
+
+# Set connman-gtk to launch floating
+	for_window [instance="connman-gtk"] floating enable
+
+# Toggle Touchpad
+#	bindsym $mod+p exec ~/.cry/scripts/touchpad.sh
+
+# Toggle Compositing
+	bindsym $mod+z exec --no-startup-id ~/.cry/scripts/compositing.sh
+
+# Open the network manager
+	bindsym $mod+shift+n exec connman-gtk
+
+# Toggle video wallpaper
+	bindsym $mod+shift+w exec ~/.cry/scripts/videowall/toggle.sh
+
+# Open the wallpaper script
+	bindsym $mod+w exec ~/.cry/scripts/wall.sh
+
+# Cryversion
+	bindsym $mod+shift+v exec ~/.cry/scripts/cryinfo.sh
+
+# Flash Window
+	bindsym $mod+c exec flash_window
+
+# Music Controls
+	bindsym XF86AudioNext exec playerctl next
+	bindsym XF86AudioPrev playerctl previous
+	bindsym XF86AudioPlay exec playerctl play-pause
+
+# Control Volume
+	bindsym XF86AudioRaiseVolume exec pamixer -i 5 
+	bindsym XF86AudioLowerVolume exec pamixer -d 5
+	bindsym XF86AudioMute exec pamixer -t
+
+# Control microphone mute
+	bindsym XF86AudioMicMute exec pamixer --source alsa_input.pci-0000_00_1b.0.analog-stereo -t 
+
+# thinger
+	bindsym XF86Launch1 exec ~/.cry/scripts/pdfman.sh
+
+# Scratchpad
+	for_window [class="scratchpad"] move to scratchpad
+	exec --no-startup-id scratchpad --name=scratchpad -title=Notes -e 'vim ~/.notepad'
+	bindsym $mod+o scratchpad show
+
+# Control Brightness
+	bindsym XF86MonBrightnessDown exec brightnessctl set 5%-
+	bindsym XF86MonBrightnessUp exec brightnessctl set 5%+
+
+# Show a list of windows using rofi
+	bindsym $mod+tab exec 'rofi -show window -theme ~/.cry/rofi/cry.rasi'
+
+# Font things...
+	font pango:Terminus 10
+
+# Set floating window modifer.
+	floating_modifier $mod
+
+# Start termite (terminal emulator)
+	bindsym $mod+Return exec termite
+
+# PDF Manuals
+	bindsym XF86Tools exec ~/.cry/scripts/pdfman.sh
+
+# Kill the focused window
+	bindsym $mod+Shift+q kill
+
+# Start rofi as an application launcher
+	bindsym $mod+d exec "rofi -show drun -theme ~/.cry/rofi/cry.rasi" 
+	bindsym $mod+shift+d exec "rofi -show run -theme ~/.cry/rofi/cry.rasi" 
+
+# Change the focused window
+	bindsym $mod+h focus left
+	bindsym $mod+j focus down
+	bindsym $mod+k focus up
+	bindsym $mod+l focus right
+
+# Move the focused window
+	bindsym $mod+Shift+h move left
+	bindsym $mod+Shift+j move down
+	bindsym $mod+Shift+k move up
+	bindsym $mod+Shift+l move right
+
+# Split (horizontal)
+	bindsym $mod+b split h
+
+# Split (vertical)
+	bindsym $mod+v split v
+
+# Put the focused window in fullscreen
+	bindsym $mod+f fullscreen toggle
+
+# Container layouts
+	bindsym $mod+e layout toggle split
+
+# Toggle selected window between floating and tiling modes.
+	bindsym $mod+Shift+space floating toggle
+
+# Toggle focus between floating and tiling windows.
+	bindsym $mod+space focus mode_toggle
+
+# Focus the parent container
+	bindsym $mod+a focus parent
+
+# Define workspace names
+	set $ws1 "1"
+	set $ws2 "2"
+	set $ws3 "3"
+	set $ws4 "4"
+	set $ws5 "5"
+	set $ws6 "6"
+	set $ws7 "7"
+	set $ws8 "8"
+	set $ws9 "9"
+	set $ws10 "0"
+
+# Switch workspaces
+	bindsym $mod+1 workspace $ws1
+	bindsym $mod+2 workspace $ws2
+	bindsym $mod+3 workspace $ws3
+	bindsym $mod+4 workspace $ws4
+	bindsym $mod+5 workspace $ws5
+	bindsym $mod+6 workspace $ws6
+	bindsym $mod+7 workspace $ws7
+	bindsym $mod+8 workspace $ws8
+	bindsym $mod+9 workspace $ws9
+	bindsym $mod+0 workspace $ws10
+
+# Move focused window to workspace
+	bindsym $mod+Shift+1 move container to workspace $ws1
+	bindsym $mod+Shift+2 move container to workspace $ws2
+	bindsym $mod+Shift+3 move container to workspace $ws3
+	bindsym $mod+Shift+4 move container to workspace $ws4
+	bindsym $mod+Shift+5 move container to workspace $ws5
+	bindsym $mod+Shift+6 move container to workspace $ws6
+	bindsym $mod+Shift+7 move container to workspace $ws7
+	bindsym $mod+Shift+8 move container to workspace $ws8
+	bindsym $mod+Shift+9 move container to workspace $ws9
+	bindsym $mod+Shift+0 move container to workspace $ws10
+
+# Reload the config file
+	bindsym $mod+Shift+c reload
+
+# Restart i3 inplace (hooks into bar)
+	bindsym $mod+Shift+r exec ~/.cry/scripts/reload.sh
+
+# Open the powermenu
+	bindsym $mod+Shift+X exec ~/.cry/scripts/powermenu.sh
+
+# Lock the screen
+	bindsym $mod+X exec ~/.cry/scripts/locker/lock.sh
+
+# Resize mode setup
+	mode "resize" {
+	
+		# Resize selected window when in resize mode
+	        	bindsym h resize shrink width 10 px or 10 ppt
+	        	bindsym j resize grow height 10 px or 10 ppt
+	        	bindsym k resize shrink height 10 px or 10 ppt
+	        	bindsym l resize grow width 10 px or 10 ppt
+	
+		# Leave rezize mode
+	       		bindsym Return mode "default"
+	        	bindsym Escape mode "default"
+	        	bindsym $mod+r mode "default"
+	}
+
+# Enter resize mode
+	bindsym $mod+r mode "resize"
+
+# Open Notification Center
+	bindsym $mod+n exec kill -s USR1 $(pidof deadd-notification-center)
+
+# Toggle redshift
+	#bindsym $mod+t exec pkill -USR1 redshift
+
+# Change Rofi Colour
+	bindsym $mod+y exec ~/.cry/scripts/roficolor.sh
+
+# Change border colors
+
+	client.focused	#A3B8EF	#A3B8EF	#000000	#A3B8EF	#A3B8EF
+	for_window [class="^.*"] border pixel 1

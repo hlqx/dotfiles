@@ -1,0 +1,47 @@
+{
+  "polybar": [
+    {
+      "bar": [
+        {
+          "name": "bar1"
+        }
+      ],
+      "enabled": "1"
+    }
+  ],
+  "xorg": [
+    {
+      "touchpad": [
+        {
+          "enabled": "1"
+        }
+      ],
+      "wallpaper": [
+        {
+          "location": "/home/hlqx/.wallpapers/andre-benz-JBkwaYMuhdc-unsplash.jpg"
+        }
+      ]
+    }
+  ],
+  "services": [
+    {
+      "compositor": [
+        {
+          "enabled": "1",
+          "command": "picom --backend glx --blur-background --blur-method kawase --blur-strength 12"
+        }
+      ],
+      "rofi": [
+        {
+          "highlightcolor": "A3B8EF"
+        }
+      ]
+    }
+  ],
+  "cry": [
+    {
+      "version": "15.1.0",
+      "firstrun": "1"
+    }
+  ]
+}

@@ -26,9 +26,12 @@ These are quite old, and some things are broken. I don't update them much becaus
 - rofi
 - moreutils (specifically, sponge)
 - feh
+- playerctl
+- i3lock-color
 
 that should be it, but i might have forgot some. (i will update this readme at some point)
 
 ## Less important notes:
 - these were never really finished tbh
+- if mprisinfo.sh or whatever its called is messing up just delete it from ~/.cry/scripts, and remove the mpris module from the bar (~/.config/polybar/config)
 - pretty sure dunst config doesn't use the right font lol
